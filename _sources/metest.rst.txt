@@ -1,0 +1,19 @@
+metest package
+==============
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   metest.__main__
+
+Module contents
+---------------
+
+.. automodule:: metest
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
