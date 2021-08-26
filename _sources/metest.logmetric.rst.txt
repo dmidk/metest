@@ -1,0 +1,8 @@
+metest.logmetric module
+=======================
+
+.. automodule:: metest.logmetric
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

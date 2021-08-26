@@ -156,6 +156,8 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">metest</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../metest.html">metest package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../metest.__main__.html">metest.__main__ module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../metest.datametric.html">metest.datametric module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../metest.logmetric.html">metest.logmetric module</a></li>
 </ul>
 </li>
 </ul>
@@ -201,18 +203,14 @@
 <span class="n">__status__</span> <span class="o">=</span> <span class="s2">"Development"</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">'./metest/'</span><span class="p">))</span>
 <span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">from</span> <span class="nn">argparse</span> <span class="k">import</span> <span class="n">ArgumentDefaultsHelpFormatter</span>
 
-<div class="viewcode-block" id="test"><a class="viewcode-back" href="../../metest.__main__.html#metest.__main__.test">[docs]</a><span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">test</span><span class="p">:</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">"""summary</span>
+<span class="kn">from</span> <span class="nn">.logmetric</span> <span class="k">import</span> <span class="n">logmetric</span>
+<span class="kn">from</span> <span class="nn">.datametric</span> <span class="k">import</span> <span class="n">datametric</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    test : None</span>
-<span class="sd">        description</span>
-<span class="sd">    """</span>
-    <span class="k">return</span></div>
 
 <div class="viewcode-block" id="MyParser"><a class="viewcode-back" href="../../metest.__main__.html#metest.__main__.MyParser">[docs]</a><span class="k">class</span> <span class="nc">MyParser</span><span class="p">(</span><span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">):</span>
 <div class="viewcode-block" id="MyParser.error"><a class="viewcode-back" href="../../metest.__main__.html#metest.__main__.MyParser.error">[docs]</a>    <span class="k">def</span> <span class="nf">error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
@@ -221,22 +219,56 @@
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span></div></div>
 
 
-
-
-
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">MyParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">'Test, check and compare logs and data from meteorological computations.'</span><span class="p">,</span>
-                  <span class="n">formatter_class</span><span class="o">=</span><span class="n">ArgumentDefaultsHelpFormatter</span><span class="p">)</span>
+    <span class="n">parent_parser</span> <span class="o">=</span> <span class="n">MyParser</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s1">'Test, check and compare logs and data from meteorological computations.'</span><span class="p">,</span>
+        <span class="n">formatter_class</span><span class="o">=</span><span class="n">ArgumentDefaultsHelpFormatter</span><span class="p">)</span>
+    
+    <span class="n">subparser</span> <span class="o">=</span> <span class="n">parent_parser</span><span class="o">.</span><span class="n">add_subparsers</span><span class="p">(</span><span class="n">dest</span><span class="o">=</span><span class="s2">"cmd"</span><span class="p">)</span>
 
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">'-v'</span><span class="p">,</span>
-                        <span class="s1">'--verbose'</span><span class="p">,</span>
-                        <span class="n">action</span><span class="o">=</span><span class="s1">'store_true'</span><span class="p">,</span>
-                        <span class="n">help</span><span class="o">=</span><span class="s1">'Print actions to console'</span><span class="p">)</span>
+    <span class="n">parser_logmetric</span> <span class="o">=</span> <span class="n">subparser</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s1">'logmetric'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">'Get metrics from logfile'</span><span class="p">)</span>
+    <span class="n">parser_datametric</span> <span class="o">=</span> <span class="n">subparser</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s1">'datametric'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">'Get metrics from output data'</span><span class="p">)</span>
 
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="n">parser_logmetric</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">'-m'</span><span class="p">,</span>
+                    <span class="s1">'--model'</span><span class="p">,</span>
+                    <span class="n">metavar</span><span class="o">=</span><span class="s1">'MODEL'</span><span class="p">,</span>
+                    <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s1">'Which model are logfiles coming from (harmonie)'</span><span class="p">,</span>
+                    <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="n">parser_logmetric</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">'-c'</span><span class="p">,</span>
+                    <span class="s1">'--compare'</span><span class="p">,</span>
+                    <span class="n">action</span><span class="o">=</span><span class="s1">'store_true'</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s1">'Compute metrics from comparing two logfiles'</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">'Verbose mode: ON'</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">parser_logmetric</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">'-i'</span><span class="p">,</span>
+                    <span class="s1">'--individual'</span><span class="p">,</span>
+                    <span class="n">action</span><span class="o">=</span><span class="s1">'store_true'</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s1">'Compute metrics from one logfile'</span><span class="p">)</span>
+
+    <span class="n">parser_logmetric</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">'-f'</span><span class="p">,</span>
+                    <span class="s1">'--file'</span><span class="p">,</span>
+                    <span class="n">metavar</span><span class="o">=</span><span class="s1">'FILE'</span><span class="p">,</span>
+                    <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s1">'Path to logfile to read'</span><span class="p">,</span>
+                    <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">parser_logmetric</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">'-f2'</span><span class="p">,</span>
+                    <span class="s1">'--file2'</span><span class="p">,</span>
+                    <span class="n">metavar</span><span class="o">=</span><span class="s1">'FILE2'</span><span class="p">,</span>
+                    <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s1">'Path to second logfile to read'</span><span class="p">,</span>
+                    <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">parent_parser</span><span class="o">.</span><span class="n">print_help</span><span class="p">()</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parent_parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">cmd</span> <span class="o">==</span> <span class="s1">'logmetric'</span><span class="p">:</span>
+        <span class="n">logwork</span> <span class="o">=</span> <span class="n">logmetric</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
 </pre></div>
       </article>
       <footer>

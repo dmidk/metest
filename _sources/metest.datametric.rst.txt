@@ -1,0 +1,8 @@
+metest.datametric module
+========================
+
+.. automodule:: metest.datametric
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
