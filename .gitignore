@@ -2,6 +2,11 @@ __pycache__
 _build
 .vscode
 
+#Distribution
+*.egg-info
+dist
+build
+
 logs
 
 #sphinx-apidocs autobuilds are not included
