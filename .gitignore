@@ -3,3 +3,8 @@ _build
 .vscode
 
 logs
+
+#sphinx-apidocs autobuilds are not included
+#The are build by github actions
+doc/metest.rst
+doc/metest.__main__.rst
