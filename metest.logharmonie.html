@@ -189,8 +189,33 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <section id="metest-logharmonie-module">
-<h1>metest.logharmonie module<a class="headerlink" href="#metest-logharmonie-module" title="Permalink to this headline">¶</a></h1>
+        <section id="module-metest.logharmonie">
+<span id="metest-logharmonie-module"></span><h1>metest.logharmonie module<a class="headerlink" href="#module-metest.logharmonie" title="Permalink to this headline">¶</a></h1>
+<p>Master module for metest.logharmonie
+Called from metest.logmetric</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="metest.logharmonie.logDate">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">metest.logharmonie.</span></span><span class="sig-name descname"><span class="pre">logDate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hmdate_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/metest/logharmonie.html#logDate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#metest.logharmonie.logDate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="metest.logharmonie.logDate.get_date">
+<span class="sig-name descname"><span class="pre">get_date</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">pandas.core.frame.DataFrame</span></span></span><a class="reference internal" href="_modules/metest/logharmonie.html#logDate.get_date"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#metest.logharmonie.logDate.get_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the date of the cycle</p>
+<dl class="simple">
+<dt>pd.DataFrame</dt><dd><p>Datetime object of logfile wrapped in dataframe.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="metest.logharmonie.logDate.get_minimisation_iterations_statistics">
+<span class="sig-name descname"><span class="pre">get_minimisation_iterations_statistics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">pandas.core.frame.DataFrame</span></span></span><a class="reference internal" href="_modules/metest/logharmonie.html#logDate.get_minimisation_iterations_statistics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#metest.logharmonie.logDate.get_minimisation_iterations_statistics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch statistics from minimisation iterations</p>
+<dl class="simple">
+<dt>pd.DataFrame</dt><dd><p>Dataframe holding statistics from minimisation</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
 </section>
 
       </article>

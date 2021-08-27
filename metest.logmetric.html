@@ -189,8 +189,36 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <section id="metest-logmetric-module">
-<h1>metest.logmetric module<a class="headerlink" href="#metest-logmetric-module" title="Permalink to this headline">¶</a></h1>
+        <section id="module-metest.logmetric">
+<span id="metest-logmetric-module"></span><h1>metest.logmetric module<a class="headerlink" href="#module-metest.logmetric" title="Permalink to this headline">¶</a></h1>
+<p>Master module for metest.logmetric</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="metest.logmetric.logmetric">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">metest.logmetric.</span></span><span class="sig-name descname"><span class="pre">logmetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">argparse.Namespace</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/metest/logmetric.html#logmetric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#metest.logmetric.logmetric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="metest.logmetric.logmetric.read_harmonie_logs">
+<span class="sig-name descname"><span class="pre">read_harmonie_logs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">argparse.Namespace</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/metest/logmetric.html#logmetric.read_harmonie_logs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#metest.logmetric.logmetric.read_harmonie_logs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read log files from Harmonie</p>
+<dl class="simple">
+<dt>args<span class="classifier">argparse.Namespace</span></dt><dd><p>Class of arguments to module</p>
+</dd>
+</dl>
+<p>Three main log files exist with different prefix. 
+These are read from the file input and different functions
+are called accordingly</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="metest.logmetric.logmetric.write_results">
+<span class="sig-name descname"><span class="pre">write_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframes</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">argparse.Namespace</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/metest/logmetric.html#logmetric.write_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#metest.logmetric.logmetric.write_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the results to database</p>
+<dl class="simple">
+<dt>dataframes<span class="classifier">list</span></dt><dd><p>List of pandas dataframes to write. Each dataframe is written to individual tables.
+A dataframe holding CYCLE must always be first.</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
 </section>
 
       </article>
