@@ -2,8 +2,11 @@
 # -*- coding: utf-8 -*-
 """Master module for metest.logmetric
 """
+from metest.logharmonie import logDate
 import sys
 import argparse
+from dmit import ostools
+import logharmonie
 
 class logmetric:
 
@@ -12,12 +15,12 @@ class logmetric:
         """
         
         if args.model=='harmonie':
-            self.read_harmonie(args)
+            self.read_harmonie_logs(args)
 
         return
 
 
-    def read_harmonie(self, args:argparse.Namespace) -> None:
+    def read_harmonie_logs(self, args:argparse.Namespace) -> None:
         """Read log files from Harmonie
 
         Parameters
@@ -35,7 +38,15 @@ class logmetric:
         logfiles = [args.file, args.file2]
         for logfile in logfiles:
             if logfile is not None:
-                prefix = logfile.split('/')[-1]
-                logfamiliy = prefix.split('_')[1] #"Date", "MakeCycleInput"
-                print(logfamiliy)
+                if ostools.does_file_exist(logfile):
+                    prefix = logfile.split('/')[-1]
+                    logfamiliy = prefix.split('_')[1] #"Date", "MakeCycleInput"
+                    
+                    if logfamiliy=="Date":
+                        logDate = logharmonie.logDate(logfile)
+                        cycle = logDate.get_date()
+                        bator_selected_bufr_synop = logDate.get_bator_bufr_total_selected_synop()
+                        print(bator_selected_bufr_synop)
+                else:
+                    print("File: {}, does not exist".format(logfile), flush=True)
         return
