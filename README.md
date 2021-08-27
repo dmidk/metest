@@ -10,7 +10,8 @@ Submodules can be imported, but this software is designed to be used as a CLI (C
 
 `python -m metest logmetric`: Calls the logmetric submodule and prints a help message (as flags are needed for this command to work)
 
-`python -m metest logmetric -m harmonie --individual -f /path/to/log`: Computes standard metrics on a single logfile from Harmonie
+`python -m metest logmetric -m harmonie --individual -f /path/to/log -o /home/$USER/`: Computes standard metrics on a single logfile from Harmonie and output results to */home/$USER/*
+
 
 # Documentation
 Documentation is auto-build from in-line code using sphinx: dmidk.github.io/metest/

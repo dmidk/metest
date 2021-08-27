@@ -69,6 +69,14 @@ if __name__ == '__main__':
                     type=str,
                     help='Path to second logfile to read',
                     required=False)
+    
+    parser_logmetric.add_argument('-o',
+                    '--output-dir',
+                    metavar='OUTDIR',
+                    type=str,
+                    help='Directory to place output into',
+                    default='.',
+                    required=False)
 
 
     if len(sys.argv)==1:

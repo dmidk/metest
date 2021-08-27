@@ -5,6 +5,7 @@
 from metest.logharmonie import logDate
 import sys
 import argparse
+import sqlite3
 from dmit import ostools
 import logharmonie
 
@@ -45,8 +46,35 @@ class logmetric:
                     if logfamiliy=="Date":
                         logDate = logharmonie.logDate(logfile)
                         cycle = logDate.get_date()
-                        bator_selected_bufr_synop = logDate.get_bator_bufr_total_selected_synop()
-                        print(bator_selected_bufr_synop)
+                        minim_iteration_statistics = logDate.get_minimisation_iterations_statistics()
+                        
+                        dataframes = [cycle, minim_iteration_statistics]
+                        self.write_results(dataframes, args)
                 else:
                     print("File: {}, does not exist".format(logfile), flush=True)
+        return
+
+
+    def write_results(self, dataframes:list, args:argparse.Namespace) -> None:
+        """Write the results to database
+
+        Parameters
+        ----------
+        dataframes : list
+            List of pandas dataframes to write. Each dataframe is written to individual tables.
+            A dataframe holding CYCLE must always be first.
+        """
+
+        db = dataframes[0]['CYCLE'][0].strftime('{}/logmetric_{}_%Y%m%d_%H%M.db'.format(args.output_dir, args.model))
+
+        connection = sqlite3.connect(db)
+
+        for dataframe in dataframes:
+            dataframe.to_sql(dataframe.table, connection, if_exists='replace')
+            print('Successful write to table: {}'.format(dataframe.table))
+
+        connection.close()
+
+        print('Output database: {}'.format(db))
+
         return

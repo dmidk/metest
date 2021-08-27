@@ -14,7 +14,8 @@ setuptools.setup(
      packages=setuptools.find_packages(),
      setup_requires=[
          'wheel',
-         'dmit'
+         'dmit',
+         'pandas'
          ],
      url="https://dmidk.github.io/metest/",
      classifiers=[
