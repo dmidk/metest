@@ -9,6 +9,7 @@ Submodules
 
    metest.__main__
    metest.datametric
+   metest.logharmonie
    metest.logmetric
 
 Module contents

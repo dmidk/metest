@@ -1,0 +1,8 @@
+metest.logharmonie module
+=========================
+
+.. automodule:: metest.logharmonie
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
