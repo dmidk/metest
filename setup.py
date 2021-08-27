@@ -12,7 +12,11 @@ setuptools.setup(
      long_description=long_description,
      long_description_content_type="text/markdown",
      packages=setuptools.find_packages(),
-     setup_requires=['wheel'],
+     setup_requires=[
+         'wheel',
+         'dmit',
+         'pandas'
+         ],
      url="https://dmidk.github.io/metest/",
      classifiers=[
          "Programming Language :: Python :: 3",

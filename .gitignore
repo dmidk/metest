@@ -4,6 +4,7 @@ _build
 
 #Distribution
 *.egg-info
+.eggs
 dist
 build
 
